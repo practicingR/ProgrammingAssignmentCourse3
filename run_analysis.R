@@ -77,3 +77,15 @@
         names(tidydata) <- sub("mean()","Mean", names(tidydata),)
         names(tidydata) <- sub("std()","StandardDeviation", names(tidydata),)
         names(tidydata) <- sub("angle","Angle", names(tidydata),)
+
+
+## Use binary operators to create a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+   ### Use binary operators, `group_by()` and `summarize` to create a table with the averages
+
+        tidydataAverages <- tidydata %>% group_by(subject, activity) %>% summarize_all(funs(mean))
+
+   ### Name this table `tidydataAverages` and use the `write.table` function to create a text file of the table
+
+        write.table(tidydataAverages, "tidydataAverages.txt", row.name=FALSE)
+
