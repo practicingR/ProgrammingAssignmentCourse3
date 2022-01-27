@@ -12,3 +12,8 @@
     if(!file.exists("UCI HAR Dataset")){
       unzip(course3file)
     }
+
+## Import dplyr package from library
+
+    library(dplyr)
+
