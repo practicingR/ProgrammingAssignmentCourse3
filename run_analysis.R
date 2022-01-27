@@ -13,6 +13,7 @@
           unzip(course3file)
         }
 
+
 ## Import dplyr package from library
 
       library(dplyr)
@@ -45,14 +46,34 @@
 
         mergeddata <- cbind(subject, labels, dataset)
 
+
 ## Extract only the measurements on the mean and standard deviation for each measurement
 
     ### Use grepl and the metacharacter "|" to extract only the columns with "subject", "idnumber", "[Mm]ean" or "std" in its name. Name it "tidydata".
 
         tidydata <- mergeddata[,grepl("subject|idnumber|mean|std|Mean",names(mergeddata))]
 
+
 ## Use descriptive activity names to name the activities in the data set
 
-    ### Rename "idnumber" column to the labels in `activitylabels` and rename the column "activity"
+    ### Rename "idnumber" column to the labels in "activitylabels" and rename the column "activity"
 
         tidydata$idnumber <- activitylabels[tidydata$idnumber,2]
+
+
+## Use sub() and metacharacters to provide appropriate labels the data set with descriptive variable names
+   
+        names(tidydata)[2] <- "activity"
+        names(tidydata) <- sub("^t","Time", names(tidydata),)
+        names(tidydata) <- sub("^f","Frequency", names(tidydata),)
+        names(tidydata) <- sub("Body","Body", names(tidydata),)
+        names(tidydata) <- sub("tBody","TimeBody", names(tidydata),)
+        names(tidydata) <- sub("BodyBody","Body", names(tidydata),)
+        names(tidydata) <- sub("gravity","Gravity", names(tidydata),)
+        names(tidydata) <- sub("Acc","Acceleration", names(tidydata),)
+        names(tidydata) <- sub("Gyro","Gyroscope", names(tidydata),)
+        names(tidydata) <- sub("Jerk","Jerk", names(tidydata),)
+        names(tidydata) <- sub("Mag","Magnitude", names(tidydata),)
+        names(tidydata) <- sub("mean()","Mean", names(tidydata),)
+        names(tidydata) <- sub("std()","StandardDeviation", names(tidydata),)
+        names(tidydata) <- sub("angle","Angle", names(tidydata),)
