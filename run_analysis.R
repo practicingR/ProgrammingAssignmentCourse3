@@ -44,3 +44,9 @@
     labels <- rbind(traininglabels, testlabels)
 
     mergeddata <- cbind(subject, labels, dataset)
+
+## Extract only the measurements on the mean and standard deviation for each measurement
+
+   ### Use grepl and the metacharacter "|" to extract only the columns with "subject", "idnumber", "[Mm]ean" or "std" in its name. Name it "tidydata".
+
+    tidydata <- mergeddata[,grepl("subject|idnumber|mean|std|Mean",names(mergeddata))]
